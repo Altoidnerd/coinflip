@@ -20,6 +20,7 @@ warnings.filterwarnings('ignore')
 
 from coinflip.classes import BoxplotFactor, Mappers, FigureUtilities
 
+
 make_big = FigureUtilities.make_big
 set_font_size = FigureUtilities.set_font_size
 set_fig_size = FigureUtilities.set_fig_size

@@ -1,3 +1,5 @@
+from coinflip.classes import Mappers,FigureUtilities
+
 from collections import Counter
 from dataclasses import dataclass
 import datetime
@@ -6,27 +8,24 @@ import matplotlib.dates as mdates
 from matplotlib import rc
 import os
 import pandas as pd
+from scipy.constants import convert_temperature
 import seaborn as sns
-
 from sklearn.feature_extraction import DictVectorizer
-from sklearn.preprocessing import MinMaxScaler
 from sklearn.linear_model import RidgeCV, LogisticRegressionCV, LassoCV, MultiTaskLassoCV, ElasticNetCV, MultiTaskElasticNetCV
 from sklearn.svm import LinearSVR, SVR
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_absolute_error, mean_absolute_percentage_error, mean_squared_error
-
 import warnings
+
+
 warnings.filterwarnings('ignore')
-
-from coinflip.classes import BoxplotFactor, Mappers, FigureUtilities
-
 
 make_big = FigureUtilities.make_big
 set_font_size = FigureUtilities.set_font_size
 set_fig_size = FigureUtilities.set_fig_size
 
 def read_training_data(infile='training_data.csv'):
-    return pd.read_csv('training_data.csv').drop(columns=['Unnamed: 0']).sort_values(by='datetime').reset_index(drop=True)
+    return pd.read_csv(infile).drop(columns=['Unnamed: 0']).sort_values(by='datetime').reset_index(drop=True)
 
 
 def format_title(**kwargs):
@@ -45,17 +44,13 @@ def do_plot(x,y,hue,data=None):
 
 def get_dt(dt):
     return datetime.datetime.fromisoformat(dt)
-        
+    
+get_datetime = get_dt
     
 
 def get_plots():
     
     df = read_training_data()
-#     print(df.describe().T)
-    
-    
-#     print(df.corr())
-
     set_font_size(size=10)
     set_font_size(size=18)
     set_fig_size()
@@ -120,14 +115,8 @@ def get_plots():
             return 'nice'
         else:
             return 'hot'
-
-
-    # dx['season'] = [ season_mapper[s] for s in dx.season ]
-    # dx['year'] = [ str((get_dt(x).year - 2011)%2011+1) for x in dx.datetime ]
-    # dx['hour'] = [ str(get_dt(x).time().hour) for x in dx.datetime ]
-    # dx['month'] = [ str(get_dt(x).month) for x in dx.datetime ]
+    
     dx['tempcat'] = list(map(temp_mapper, dx.temp))
-
     dts = df['datetime'].copy()
     dx['hour'] = dts.apply(func= lambda x: get_datetime(x).hour)
     dx['weekday'] = dts.apply(func= lambda x: get_datetime(x).weekday())
@@ -140,8 +129,10 @@ def get_plots():
     dx['season'] = dx.season.apply(func=lambda x: season_mapper[x])
     return dx
 
-def get_dx():
-    df = read_training_data()
+
+def get_dx(infile='training_data.csv', verbose=False):
+    verbose and print(f'reading {infile}')
+    df = read_training_data(infile=infile)
     df = df.sort_values(by='datetime').reset_index(drop=True)
     new_cols = list(df.columns[1:])+[df.columns[0]]
     dd = df[new_cols]
@@ -189,6 +180,8 @@ def get_dx():
     dx['weekday'] = dx.weekday.apply(func=lambda x: weekday_mapper[x])
     dx['year'] = dts.apply(func= lambda x: (get_datetime(x).year - 2011)%2011+1)
     dx['month'] = dts.apply(func=lambda x: get_datetime(x).month )
-    dx['temp_cat'] = dx.temp.apply(func=lambda x : temp_mapper(temp=x,low=convert_temperature(low_temp_F,'f','c'),high=convert_temperature(high_temp_F,'f','c')))
+    dx['temp_cat'] = dx.temp.apply(func=lambda x : temp_mapper(temp=x))
     dx['season'] = dx.season.apply(func=lambda x: season_mapper[x])
     return dx
+
+get_X = get_dx

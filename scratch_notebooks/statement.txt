@@ -1,0 +1,26 @@
+The attachment contains:
+1. Data dictionary 
+
+2. Training dataset for model building 
+
+3. Testing dataset for submission 
+
+Problem statement: 
+
+Given is the hourly rental data of an e-scooter rental company. The goal is to predict the total number of e-scooters rented per hour. We recommend using Python for this assignment and are free to use any packages and IDE.  Submissions are evaluated based on how the candidate is able to explore the data using charts, correlation matrix, etc.; and prediction using various modeling methods, the Root Mean Squared Logarithmic Error (RMSLE) as potential evaluation metrics.  
+
+ 
+
+Some guidance: 
+
+Pls submit your analysis/code in Python Notebook, you can show the following results:
+
+1. data pre-processing, feature generation
+
+2. data exploration analysis and visualization
+
+3. modeling - algorithms choices and optimization 
+
+4. final model performance analysis, feature importance 
+
+5. Based on the parameters provided in the testing data, you can use the trained model above (or retrain the model with different set of variables) to predict counts, and add the "count" column in the testing data and submit it.

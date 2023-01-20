@@ -5,7 +5,6 @@
 ![dm](dm.png)
 
 
-
 # Introductory Discussion
 
 ## Strategy for Prediction of Total Scooter Rentals By Hour
@@ -143,18 +142,10 @@ We capture the time interactions by creating several additionalvariables by mult
 
 ![dm](dm.png)
 
-
-
-
-# Next Steps:
-
-* need to try `HistGradientBoostingRegressor` which requires a different preprocessing procedure.
-* This Article states: "Gradient Boosting Regression with decision trees is often flexible enough to efficiently handle heteorogenous tabular data with a mix of categorical and numerical features as long as the number of samples is large enough."
-* The same article notes that a linear model with interactions and ont-hot encoding performs almost as well.
-* Analyze why SVR works the best, and tune it:
-    - kernel choice
-    - more interactions? N_features is still smallist
-
+![res1](res1.png)
+![res2](res2.png)
+![res3](res3.png)
+![res4](res4.png)
 
 
 

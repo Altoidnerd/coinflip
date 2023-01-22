@@ -1,8 +1,8 @@
 
 
-![errors](errors.png)
+![errors](images/errors.png)
 
-![dm](dm.png)
+![dm](images/dm.png)
 
 
 # Introductory Discussion
@@ -137,15 +137,15 @@ We capture the time interactions by creating several additionalvariables by mult
 8  linear_reg   85.012282  registered      15.453266
 9  elasticnet  100.391269  registered      25.298674
 ```
-![errors](errors.png)
+![errors](images/errors.png)
 
 
-![dm](dm.png)
+![dm](images/dm.png)
 
-![res1](res1.png)
-![res2](res2.png)
-![res3](res3.png)
-![res4](res4.png)
+![res1](images/res1.png)
+![res2](images/res2.png)
+![res3](images/res3.png)
+![res4](images/res4.png)
 
 
 
